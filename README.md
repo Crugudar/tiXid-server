@@ -26,6 +26,8 @@ The MVP will cover the following:
 - Image: String
 - CustomCards:[ObjectsID]
 
+
+
 **Cards**
 
 - image: String
