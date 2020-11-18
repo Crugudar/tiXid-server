@@ -18,7 +18,7 @@ The MVP will cover the following:
 
 ## Models
 
-###**User**
+**User**
 
 - Username: String
 - Password: String
@@ -28,7 +28,7 @@ The MVP will cover the following:
 
 
 
-###**Cards**
+**Cards**
 
 - image: String
 - title: String
@@ -36,7 +36,7 @@ The MVP will cover the following:
 
 ## Routes
 
-###**Auth**
+**Auth**
 
 -get/home: renderiza home
 
@@ -48,7 +48,7 @@ The MVP will cover the following:
 
 -get/me
 
-###**User Profile**
+**User Profile**
 
 -get/profile
 
@@ -62,7 +62,7 @@ The MVP will cover the following:
 
 -post/deletecard/:id
 
-###**Game**
+**Game**
 
 
 
