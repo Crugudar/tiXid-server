@@ -24,12 +24,45 @@ The MVP will cover the following:
 - Password: String
 - e-mail: String
 - Image: String
-- Games: Array[ObjectID]
+- CustomCards:[ObjectsID]
+
+**Cards**
+
+- image: String
+- title: String
+- author:ObjectID
+
+## Routes
+
+**Auth**
+
+-get/home: renderiza home
+
+-post.signup
+
+-post/login
+
+-get/logout
+
+-get/me
+
+**User Profile**
+
+-get/profile
+
+-get/profilephoto
+
+-post/profilephoto
+
+-get/editcard/:id
+
+-post/editcard/:id
+
+-post/deletecard/:id
 
 **Game**
 
-- Winner: ObjectID
-- players: Array[ObjectID]
+
 
 ## Wireframes
 - 
