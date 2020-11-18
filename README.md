@@ -29,7 +29,7 @@ The MVP will cover the following:
 **Game**
 
 - Winner: ObjectID
- -players: Array[ObjectID]
+- players: Array[ObjectID]
 
 ## Wireframes
 - 
