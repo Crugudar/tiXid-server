@@ -16,7 +16,7 @@ The MVP will cover the following:
 - Custom game mode
 
 ## Models
--**User**
+**User**
 
 -Username: String
 -Password: String
@@ -24,22 +24,18 @@ The MVP will cover the following:
 -Image: String
 -Games:
 
--**Game**
+**Game**
 -Winner: ObjectID
 -players: Array[ObjectID]
 
 ## Wireframes
 - 
 
-
-
 ## Links
 
-- **Trello**
-- https://trello.com/b/dad5JU41/tixid
 
+- Trello: https://trello.com/b/dad5JU41/tixid
 
-
-- **[Gihub Repo URLs]**
 -Server: https://github.com/Crugudar/tiXid-server
+
 -Client: https://github.com/Crugudar/tiXid-client
