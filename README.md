@@ -60,7 +60,12 @@ The MVP will cover the following:
 
 
 ## Wireframes
-- 
+- ![Wireframe 1](https://gyazo.com/702bdfe678824644b7b5b71fd21e4992)
+- ![Wireframe 2](https://gyazo.com/1fe873d08f949090f223a0209d59df62)
+- ![Wireframe 3](https://gyazo.com/41b563c62fb5277b7b3dc44cf1877181)
+
+- https://wireframepro.mockflow.com/view/M426f4345b4d31f9335d36b57e29111dd1603800913825
+
 
 ## Links
 
