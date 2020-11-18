@@ -18,15 +18,15 @@ The MVP will cover the following:
 ## Models
 -**User**
 
-Username: String
-Password: String
-e-mail: String
-Image: String
-Games:
+-Username: String
+-Password: String
+-e-mail: String
+-Image: String
+-Games:
 
 -**Game**
-Winner: ObjectID
-players: Array[ObjectID]
+-Winner: ObjectID
+-players: Array[ObjectID]
 
 ## Wireframes
 - 
@@ -41,5 +41,5 @@ players: Array[ObjectID]
 
 
 - **[Gihub Repo URLs]**
-Server: https://github.com/Crugudar/tiXid-server
-Client: https://github.com/Crugudar/tiXid-client
+-Server: https://github.com/Crugudar/tiXid-server
+-Client: https://github.com/Crugudar/tiXid-client
