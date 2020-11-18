@@ -13,7 +13,7 @@ The MVP will cover the following:
 
 ## Backlog
 
-- Customizable Cards
+
 - Custom game mode
 
 ## Models
