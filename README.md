@@ -38,7 +38,7 @@ The MVP will cover the following:
 
 **Auth**
 
--get/home: renderiza home
+-get/home: 
 
 -post.signup
 
@@ -56,6 +56,10 @@ The MVP will cover the following:
 
 -post/profilephoto
 
+-get/addcard
+
+-post/addcard
+
 -get/editcard/:id
 
 -post/editcard/:id
@@ -64,6 +68,7 @@ The MVP will cover the following:
 
 **Game**
 
+-get/game
 
 
 ## Wireframes
