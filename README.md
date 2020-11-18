@@ -12,21 +12,24 @@ The MVP will cover the following:
 
 
 ## Backlog
+
 - Customizable Cards
 - Custom game mode
 
 ## Models
+
 **User**
 
--Username: String
--Password: String
--e-mail: String
--Image: String
--Games:
+- Username: String
+- Password: String
+- e-mail: String
+- Image: String
+- Games: Array[ObjectID]
 
 **Game**
--Winner: ObjectID
--players: Array[ObjectID]
+
+- Winner: ObjectID
+ -players: Array[ObjectID]
 
 ## Wireframes
 - 
@@ -36,6 +39,6 @@ The MVP will cover the following:
 
 - Trello: https://trello.com/b/dad5JU41/tixid
 
--Server: https://github.com/Crugudar/tiXid-server
+- Server: https://github.com/Crugudar/tiXid-server
 
--Client: https://github.com/Crugudar/tiXid-client
+- Client: https://github.com/Crugudar/tiXid-client
