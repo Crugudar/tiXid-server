@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const authRouter = require("./routes/auth");
+const profRouter = require("./routes/profile");
 
 // MONGOOSE CONNECTION
 mongoose
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", authRouter);
+app.use("/profile", profRouter);
 
 // ERROR HANDLING
 // catch 404 and forward to error handler

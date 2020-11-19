@@ -27,22 +27,23 @@ router.get("/home", withAuth, function (req, res, next) {
 router.post("/signup", async (req, res, next) => {
  //Cogemos el email y el password
 
-  const{email, password}=req.body;
+  const{username, email, password}=req.body;
   try {
     // chequea si el email ya existe en la BD
     const emailExists = await User.findOne({email});
+    const usernameExists = await User.findOne({username});
     // si el usuario ya existe, devuelve un error
-      if (emailExists){
+      if (emailExists||usernameExists){
         return res.status(400).json({errorMessage:'Email already exists!'});
       }else{
       // en caso contrario, si el usuario no existe, hace hash del password y crea un nuevo usuario en la BD
         
         const salt= bcrypt.genSaltSync(saltRounds);
         const hashPass= bcrypt.hashSync(password,salt);
-        const newUser= await User.create({email, password:hashPass});
+        const newUser= await User.create({username, email, password:hashPass});
       // definimos el payload que enviaremos junto con el token
 
-        const payload={email};
+        const payload={email, username};
         
       // creamos el token usando el método sign, el string de secret session y el expiring time
         
@@ -68,11 +69,12 @@ router.post("/signup", async (req, res, next) => {
 router.post("/login", async function (req, res) {
  //Adquirimos el email y el password
 
-  const {email, password}=req.body;
+  const { email, password}=req.body;
   try {
     // revisa si el usuario existe en la BD
 
     const user= await User.findOne({email});
+   
    
     // si el usuario no existe, devuelve un error
     if(!user){
