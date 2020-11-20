@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const uploadCloud = require("../configs/cloudinary-setup");
 const User = require("../models/User");
 const CustomCard = require("../models/CustomCard")
 
@@ -33,6 +33,14 @@ router.post("/addCard",withAuth, async (req, res, next) => {
   }
 });
 
+router.post("/upload", withAuth, uploadCloud.single("image"), (req, res, next) =>{
+  if(!req.file) {
+      next(new Error("No file uploaded!"))
+      return;
+  }
+  res.json({ secure_url: req.file.secure_url})
+});
+
 router.get("/cardList/:id",withAuth, async (req, res, next)=>{
 
   try {
@@ -50,9 +58,18 @@ router.get("/cardList/:id",withAuth, async (req, res, next)=>{
 
 })
 
+router.post("/addPhoto/:id",withAuth, async (req, res, next) =>{
+  try{ const userID = req.params._id
+  const {image, author} = req.body
+  console.log('tengo hambre', image, author, userID)
+  await User.findByIdAndUpdate(author,{image: image},{new:true})
+  res.status(200).json(image)
+} catch (error){
+  console.log(error)
+}
+})
+
 router.post("/editCard/:id",withAuth, async (req, res, next)=>{
-  
-  
   
   try {
     const cardId = req.params.id;
