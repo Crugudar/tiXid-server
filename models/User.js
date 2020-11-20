@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Haremos un modelo que contenga email, password y dos timestamps: createdAt y updatedAt
 const userSchema= new Schema(
     {
-        photo:{type:String},
+        image:{type:String, default:"https://img.blogs.es/anexom/wp-content/uploads/2020/06/pestana-de-incognito-navegacion-oculta.jpg"},
         username: {type: String},
         email:{type:String, required:true, unique:true},
         password:{type:String, required:true},
