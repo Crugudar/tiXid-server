@@ -13,7 +13,7 @@ router.post("/addCard",withAuth, async (req, res, next) => {
  //Cogemos el email y el password
   
   const{image, name, author}=req.body;
-  console.log(author)
+  // console.log(author)
   try {
 
         const newCard= await CustomCard.create({image, name, author});
@@ -34,21 +34,13 @@ router.post("/addCard",withAuth, async (req, res, next) => {
 });
 
 router.get("/cardList/:id",withAuth, async (req, res, next)=>{
-   console.log('se supone que es la id',req.params)
-  
-  const {author}=req.body
- 
-  
-  try {
-    
 
-    console.log('se supone que es la id',req.params)
+  try {
+ 
     let user=await User.findById(req.params.id).populate('cards')
 
-    console.log(user)
+    // console.log(user)
     let cartas=user.cards
-
-    console.log('tráeme cartas perraaaaaaaaaaaaaaaa',cartas)
 
     res.status(200).json(cartas);
 
@@ -63,15 +55,19 @@ router.post("/editCard/:id",withAuth, async (req, res, next)=>{
   
   
   try {
-    const cardId = req.params._id;
+    const cardId = req.params.id;
+
+    console.log('id de de la carta',cardId )
     
     const { name, image} = req.body;
+
+    
      
     const editCard = await CustomCard.findByIdAndUpdate(cardId, {image: image, name:name},{new: true});
-  
+    console.log('nombre updatedfff', editCard)
     // AQUÍ TENDRÍAMOS QUE POPULAR LAS CARTAS DE CADA USER
-    
-    const thisUser = await User.findById(req.userID)
+    let userid=editCard.author
+    const thisUser = await (await User.findById(userid)).populate('cards')
 
     res.status(200).json(editCard);
     return;
@@ -82,39 +78,26 @@ router.post("/editCard/:id",withAuth, async (req, res, next)=>{
   }
 });
 
-router.get('/delete/:_id', withAuth, async(req, res, next)=>{
+router.delete('/deleteCard/:userid/:_id', withAuth, async(req, res, next)=>{
     
   try {
-      const cardId = req.params._id;
+
       
-      //DEBERÍAMPS DESPOPULAR
-      const thisUser= await CustomCard.findById(req.userID);
+      const cardID = req.params._id;
+      const userID = req.params.userid;      
+      
+      const thisUser= await User.findById(userID);
+      
+      let arr=thisUser.cards;
+      let position=arr.indexOf(cardID);
+      arr.splice(position,1);  
+     
+    
+      await User.findOneAndUpdate(userID, {cards: arr},{new: true}).populate('cards');
+      
+      await CustomCard.findByIdAndRemove(cardID);
 
-      //console.log('USEEEEEEEEEEEEEEEEEEEEEEER',thisUser);
-
-      // let arr=thisUser.cards;
-
-      // let position=arr.indexOf(bookingId);
-
-      // if(arr.length==1){
-      //         let a=await User.findOneAndUpdate(req.userID, {$set:{reservations: []}},{new: true});
-
-      //         //console.log('USERARRAY1RESULTADO', a);
-      //         await Booking.findByIdAndRemove(bookingId);
-      //         res.redirect('/profile');
-      //     }else{
-            
-      //         arr.splice(position,1);  
-      //         //console.log('DEBERÍA ESTAR MODIFICADOOOOOOOOOOOOO',arr);
-            
-      //         await User.findOneAndUpdate(req.userID, {reservations: arr},{new: true});
-
-      //         //console.log('TODAS LAS RESERVASSSSSSSSSSSSSSSSS',req.userID.reservations);
-      //         const deleteBooking = await Booking.findByIdAndRemove(bookingId);
-      //         res.redirect('/profile');
-      //     }
-
-      const deleteCard = await CustomCard.findByIdAndRemove(cardId);
+      
       res.status(200).json({ message: "Card erased successfully.", deleteCard });
   } catch (error) {
       console.log(error); 
