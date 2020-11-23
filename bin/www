@@ -35,13 +35,25 @@ const io=socketio(server);
 let connectedSockets=[]
 
 
-io.on('connection', function(socket,user){
 
-  connectedSockets.push(socket.id)
+io.on('connect', function(socket){
+
+  connectedSockets.push(socket.id);
+  console.log(connectedSockets)
+
+  if(connectedSockets<=4){
+    socket.join('room1')
+  }
+
+  socket.on('user', (userid)=>{
+    player={
+      user:userid,
+      socket:socket.id
+    }
+    socket.emit('user', player)
+  })
+
   
-
-   io.emit('numberOfSockets',   connectedSockets) 
-
   socket.on('disconnect', function(socket){
     let index=connectedSockets.indexOf(socket.id)
     connectedSockets.splice(index,1)
