@@ -32,24 +32,32 @@ server.on('listening', onListening);
 
 const io=socketio(server);
 
-let activeUsers = [];
-let connections = [];
+let connectedSockets=[]
 
 
-io.on('connection', function(socket){
-  console.log('user connected')
+io.on('connection', function(socket,user){
+
+  connectedSockets.push(socket.id)
   
-  
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected')
+   io.emit('numberOfSockets',   connectedSockets) 
+
+  socket.on('disconnect', function(socket){
+    let index=connectedSockets.indexOf(socket.id)
+    connectedSockets.splice(index,1)
+    console.log('user disconnected', connectedSockets)
+
+    
   })
 
   socket.on('chat', function(data){
     console.log('message: ' + data)
-    io.emit('chat', data)
+    socket.emit('chat', data)
   })
 })
+
+
+
 
 /**
  * Normalize a port into a number, string, or false.

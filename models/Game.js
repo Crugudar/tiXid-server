@@ -6,22 +6,23 @@ const gameSchema = new Schema({
   
   cards: [{type:String}],
   gameName: {type:String},
+  players:[{ type: Schema.Types.ObjectId, ref: 'User' }],
 
   player1cards: [{type:String}],
-  player1Id:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+  player1Id:{ type: Schema.Types.ObjectId, ref: 'User' },
   player1points:{type:Number},
 
 
   player2cards: [{type:String}],
-  player2Id:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+  player2Id:{ type: Schema.Types.ObjectId, ref: 'User' },
   player2points:{type:Number},
 
   player3cards: [{type:String}],
-  player3Id:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+  player3Id:{ type: Schema.Types.ObjectId, ref: 'User' },
   player3points:{type:Number},
 
   player4cards: [{type:String}],
-  player4Id:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+  player4Id:{ type: Schema.Types.ObjectId, ref: 'User' },
   player4points:{type:Number},
   
 }, {
