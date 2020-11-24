@@ -9,6 +9,7 @@ var debug = require('debug')('server:server');
 var http = require('http');
 const socketio=require('socket.io');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -33,38 +34,60 @@ server.on('listening', onListening);
 const io=socketio(server);
 
 let connectedSockets=[]
+const selectedcards=[];
 
 
 
 io.on('connect', function(socket){
-
+  let room;
+  
   connectedSockets.push(socket.id);
-  console.log(connectedSockets)
+  
+  socket.on('hola', (data)=>{
 
-  if(connectedSockets<=4){
-    socket.join('room1')
-  }
-
-  socket.on('user', (userid)=>{
-    player={
-      user:userid,
-      socket:socket.id
+    room=Math.ceil(connectedSockets.length/4) 
+    let player; 
+    
+    socket.join(room)
+    console.log(io.sockets.adapter.rooms)
+    
+    if(Math.ceil(connectedSockets.length/4)===1){
+    player=connectedSockets.length;
+    
     }
-    socket.emit('user', player)
+  
+  socket.emit('welcome', {room,player})
+  io.to(room).emit('otherusers', ("a new user joined "));
   })
+  
 
+  
+  
+  socket.on('cardselected', (url)=>{
+    console.log(url)
+    
+    
+    selectedcards.push(url);
+    console.log(selectedcards)
+
+    if (selectedcards.length===4){
+      //socket.emit('selectedcards', (selectedcards))
+      socket.emit('selectedcards', (selectedcards));
+    }
+  })
   
   socket.on('disconnect', function(socket){
     let index=connectedSockets.indexOf(socket.id)
     connectedSockets.splice(index,1)
-    console.log('user disconnected', connectedSockets)
+    console.log('user disconnected')
 
     
   })
 
   socket.on('chat', function(data){
     console.log('message: ' + data)
-    socket.emit('chat', data)
+    io.to(room).emit('chat', (data))
+    // socket.emit('chat', data)
   })
 })
 
