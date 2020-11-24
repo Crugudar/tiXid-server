@@ -34,7 +34,7 @@ server.on('listening', onListening);
 const io=socketio(server);
 
 let connectedSockets=[]
-const selectedcards=[];
+let selectedcards=[];
 
 
 
@@ -63,7 +63,7 @@ io.on('connect', function(socket){
 
   
   
-  socket.on('cardselected', (url)=>{
+  socket.on('cardselected', async(url)=>{
     console.log(url)
     
     
@@ -72,7 +72,9 @@ io.on('connect', function(socket){
 
     if (selectedcards.length===4){
       //socket.emit('selectedcards', (selectedcards))
-      socket.emit('selectedcards', (selectedcards));
+      await io.to(room).emit('selectedcards', (selectedcards));
+      selectedcards=[]
+      console.log(selectedcards)
     }
   })
   
