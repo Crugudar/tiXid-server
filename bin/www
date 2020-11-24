@@ -33,30 +33,58 @@ server.on('listening', onListening);
 
 const io=socketio(server);
 
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 let connectedSockets=[]
 let selectedcards=[];
-
+let players=[]
+  
 
 
 io.on('connect', function(socket){
   let room;
   
-  connectedSockets.push(socket.id);
+ connectedSockets.push(socket.id);
   
   socket.on('hola', (data)=>{
-
+    console.log(data)
     room=Math.ceil(connectedSockets.length/4) 
     let player; 
     
     socket.join(room)
-    console.log(io.sockets.adapter.rooms)
+    io.sockets.adapter.rooms.forEach((user)=>{
+      console.log(user)
+    }) 
+     
     
     if(Math.ceil(connectedSockets.length/4)===1){
     player=connectedSockets.length;
-    
+
+    playerdata={player, username: data.username, image:data.image}
+    players.push(playerdata)
     }
+    
   
-  socket.emit('welcome', {room,player})
+  socket.emit('welcome', {room,player, data})
+  io.to(room).emit('players', players )
   io.to(room).emit('otherusers', ("a new user joined "));
   })
   
@@ -71,8 +99,12 @@ io.on('connect', function(socket){
     console.log(selectedcards)
 
     if (selectedcards.length===4){
+      let shuffledCards=shuffle(selectedcards)
+      console.log('selected',selectedcards)
+      console.log('shuffled' ,shuffledCards)
+
       //socket.emit('selectedcards', (selectedcards))
-      await io.to(room).emit('selectedcards', (selectedcards));
+      await io.to(room).emit('selectedcards', (shuffledCards));
       selectedcards=[]
       console.log(selectedcards)
     }
