@@ -8,8 +8,12 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+
+
 const authRouter = require("./routes/auth");
 const profRouter = require("./routes/profile");
+const gameRouter = require("./routes/game");
+
 
 // MONGOOSE CONNECTION
 mongoose
@@ -40,6 +44,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/auth", authRouter);
 app.use("/profile", profRouter);
+app.use("/game", gameRouter);
 
 
 // ERROR HANDLING
