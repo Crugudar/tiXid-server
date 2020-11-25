@@ -23,6 +23,10 @@
     "socket.io": "^3.0.3"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    
+  },
+  "engines":{
+    "node":"14.x"
   }
 }

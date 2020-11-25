@@ -32,7 +32,7 @@ var app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.PUBLIC_DOMAIN, 'https://tixid.herokuapp.com/', 'http://tixid.herokuapp.com/'],
+    origin: [process.env.PUBLIC_DOMAIN, 'https://tixid.herokuapp.com', 'http://tixid.herokuapp.com'],
   })
 );
 
@@ -45,6 +45,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/auth", authRouter);
 app.use("/profile", profRouter);
 app.use("/game", gameRouter);
+
+// ROUTE FOR SERVING REACT APP (index.html) 
+app.use((req, res) => { // If no routes match, send them the React HTML. 
+  res.sendFile(__dirname + "/public/index.html"); }); 
 
 
 // ERROR HANDLING
