@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Card = require("../models/Card");
 
 
-mongoose.connect(`mongodb://localhost:27017/project3-db`, {useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect(`mongodb+srv://Crugudar:holamundo@tixid.39wg5.mongodb.net/tixid?retryWrites=true&w=majority`, {useNewUrlParser:true, useUnifiedTopology:true});
 
 const cards=[
     {url:"https://res.cloudinary.com/lemonade292/image/upload/v1605720357/tiXid/9_zcb7ze.jpg"},

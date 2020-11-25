@@ -32,7 +32,7 @@ var app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.PUBLIC_DOMAIN],
+    origin: [process.env.PUBLIC_DOMAIN, 'https://tixid.herokuapp.com/', 'http://tixid.herokuapp.com/'],
   })
 );
 
