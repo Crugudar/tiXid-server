@@ -1,5 +1,3 @@
-
-
 # tiXid-server
 ## Multiplayer Game Online!
 
