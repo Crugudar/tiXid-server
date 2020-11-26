@@ -61,7 +61,7 @@ router.get("/cardList/:id",withAuth, async (req, res, next)=>{
 router.post("/addPhoto/:id",withAuth, async (req, res, next) =>{
   try{ const userID = req.params._id
   const {image, author} = req.body
-  console.log('tengo hambre', image, author, userID)
+  
   await User.findByIdAndUpdate(author,{image: image},{new:true})
   res.status(200).json(image)
 } catch (error){
@@ -73,15 +73,13 @@ router.post("/editCard/:id",withAuth, async (req, res, next)=>{
   
   try {
     const cardId = req.params.id;
-
-    console.log('id de de la carta',cardId )
     
     const { name, image} = req.body;
 
     
      
     const editCard = await CustomCard.findByIdAndUpdate(cardId, {image: image, name:name},{new: true});
-    console.log('nombre updatedfff', editCard)
+    
     // AQUÍ TENDRÍAMOS QUE POPULAR LAS CARTAS DE CADA USER
     let userid=editCard.author
     const thisUser = await (await User.findById(userid)).populate('cards')

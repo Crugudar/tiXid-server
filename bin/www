@@ -71,14 +71,14 @@ io.on('connect', function(socket){
  connectedSockets.push(socket.id);
   
   socket.on('hola', (data)=>{
-    console.log(data)
+    
     room=Math.ceil(connectedSockets.length/4) 
     let player; 
     
     socket.join(room)
-    io.sockets.adapter.rooms.forEach((user)=>{
-      console.log(user)
-    }) 
+    // io.sockets.adapter.rooms.forEach((user)=>{
+    //   console.log(user)
+    // }) 
      
     
     if(Math.ceil(connectedSockets.length/4)===1){
@@ -106,35 +106,33 @@ io.on('connect', function(socket){
   
   
   socket.on('cardselected', async(url)=>{
-    console.log(url)
+    
     
     
     selectedcards.push(url);
-    console.log(selectedcards)
+   
 
     if (selectedcards.length===4){
       let shuffledCards=shuffle(selectedcards)
-      console.log('selected',selectedcards)
-      console.log('shuffled' ,shuffledCards)
+      // console.log('selected',selectedcards)
+      // console.log('shuffled' ,shuffledCards)
 
       //socket.emit('selectedcards', (selectedcards))
       await io.to(room).emit('selectedcards', (shuffledCards));
       selectedcards=[]
-      console.log(selectedcards)
+      // console.log(selectedcards)
     }
   })
   
   socket.on('disconnect', function(socket){
     let index=connectedSockets.indexOf(socket.id)
     let playerIndex=players.indexOf(socket.id)
-console.log('llega players arr?',playersArr)
+
     //playersArr[playerIndex + 2].name = `player${playerIndex + 2}`
-    console.log('wtf bro',playerIndex)
-    console.log('antes del splice',players)
+   
     connectedSockets.splice(index,1) 
     players.splice(playerIndex,1)
-    console.log('despues del splice',players)
-    console.log('llega players arr pos splice?',playersArr)
+   
     console.log('user disconnected')
 
     
@@ -143,7 +141,7 @@ console.log('llega players arr?',playersArr)
   })
 
   socket.on('chat', function(data){
-    console.log('message: ' + data)
+    // console.log('message: ' + data)
     io.to(room).emit('chat', (data))
     // socket.emit('chat', data)
   })

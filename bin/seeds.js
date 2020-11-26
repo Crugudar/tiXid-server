@@ -96,6 +96,6 @@ Card.create(cards, (err) => {
     if (err) {
       throw err;
     }
-    console.log(`Created ${cards.length} cards`);
+    // console.log(`Created ${cards.length} cards`);
     mongoose.connection.close();
   });
