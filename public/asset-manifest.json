@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d90bdc67.chunk.css",
+    "main.js": "/static/js/main.b4031f93.chunk.js",
+    "main.js.map": "/static/js/main.b4031f93.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.43becca3.chunk.js": "/static/js/2.43becca3.chunk.js",
+    "static/js/2.43becca3.chunk.js.map": "/static/js/2.43becca3.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.00fabb048fc6a92e054f4169a0f78fc6.js": "/precache-manifest.00fabb048fc6a92e054f4169a0f78fc6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d90bdc67.chunk.css.map": "/static/css/main.d90bdc67.chunk.css.map",
+    "static/js/2.43becca3.chunk.js.LICENSE.txt": "/static/js/2.43becca3.chunk.js.LICENSE.txt",
+    "static/media/login&signup.css": "/static/media/LoginBackgorund.70607f78.jpg",
+    "static/media/Game.css": "/static/media/hojitas.750080cf.jpg",
+    "static/media/Profile.css": "/static/media/pfBack4.c36dc267.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.43becca3.chunk.js",
+    "static/css/main.d90bdc67.chunk.css",
+    "static/js/main.b4031f93.chunk.js"
+  ]
+}
