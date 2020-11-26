@@ -28,11 +28,21 @@ The MVP will cover the following:
 
 
 
-**Cards**
+** Custom Cards**
 
 - image: String
 - title: String
 - author:ObjectID
+
+
+** Cards**
+- image: String
+
+** Game **
+
+-cards: Array
+-gameName: String
+players: Objects Array
 
 ## Routes
 
@@ -53,6 +63,8 @@ The MVP will cover the following:
 | `POST`      | `/editcard/:id`          | Private route. Sends info to server creates a card Redirects to profile | { imageurl,name, idUser }                    |
 | `POST`      | `/delete/:id`          | Private route. Sends info to server deletes a card Redirects to profile | { imageurl,name, idUser }    
 | `GET`      | `/game`          | Private route. Renders `game ` form.view.                     |                                                           |
+| `POST`     | `/upload` | Upload files to cloudinary | {imageurl}  |
+|`GET` | `/game/deck` | Brings the deck to the game | |
 
 
 
