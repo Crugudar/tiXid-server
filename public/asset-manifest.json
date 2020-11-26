@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f02fcdc.chunk.css",
+    "main.js": "/static/js/main.f0b2a240.chunk.js",
+    "main.js.map": "/static/js/main.f0b2a240.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.69adaed1.chunk.js": "/static/js/2.69adaed1.chunk.js",
+    "static/js/2.69adaed1.chunk.js.map": "/static/js/2.69adaed1.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b8835fa890225e17cfb9190656b388f4.js": "/precache-manifest.b8835fa890225e17cfb9190656b388f4.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.8f02fcdc.chunk.css.map": "/static/css/main.8f02fcdc.chunk.css.map",
+    "static/js/2.69adaed1.chunk.js.LICENSE.txt": "/static/js/2.69adaed1.chunk.js.LICENSE.txt",
+    "static/media/login&signup.css": "/static/media/LoginBackgorund.70607f78.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.69adaed1.chunk.js",
+    "static/css/main.8f02fcdc.chunk.css",
+    "static/js/main.f0b2a240.chunk.js"
+  ]
+}
