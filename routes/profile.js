@@ -13,12 +13,12 @@ router.post("/addCard",withAuth, async (req, res, next) => {
  //Cogemos el email y el password
   
   const{image, name, author}=req.body;
-  // console.log(author)
+   
   try {
 
         const newCard= await CustomCard.create({image, name, author});
         // const allCardsFromUser =await CustomCard.find({author:author})
-       
+       console.log(newCard)
 
        await User.findOneAndUpdate(req.userID, {$push:{cards:newCard._id }},{new: true})
        let populated=await User.findById(author).populate('cards');       

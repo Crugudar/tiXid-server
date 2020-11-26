@@ -123,6 +123,11 @@ io.on('connect', function(socket){
       // console.log(selectedcards)
     }
   })
+
+  socket.on('reloadPoints', newPoints=>{
+    
+    io.to(room).emit('reloadPoints', (newPoints));
+  })
   
   socket.on('disconnect', function(socket){
     let index=connectedSockets.indexOf(socket.id)
