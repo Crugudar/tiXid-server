@@ -56,6 +56,12 @@ function shuffle(array) {
 let connectedSockets=[]
 let selectedcards=[];
 let players=[]
+let playersArr = [
+  { name: 'Player1', image: '', points: 0, id: '' },
+  { name: 'Player2', image: '', points: 0, id: '' },
+  { name: 'Player3', image: '', points: 0, id: '' },
+  { name: 'Player4', image: '', points: 0, id: '' },
+]
   
 
 
@@ -80,11 +86,19 @@ io.on('connect', function(socket){
 
     playerdata={player, username: data.username, image:data.image}
     players.push(playerdata)
+    
+    players.map((player, index) =>{
+      playersArr[index].name = player.username
+      playersArr[index].image = player.image
+    })
+    
     }
+
+    
     
   
   socket.emit('welcome', {room,player, data})
-  io.to(room).emit('players', players )
+  io.to(room).emit('players', playersArr )
   io.to(room).emit('otherusers', ("a new user joined "));
   })
   
@@ -112,10 +126,20 @@ io.on('connect', function(socket){
   
   socket.on('disconnect', function(socket){
     let index=connectedSockets.indexOf(socket.id)
-    connectedSockets.splice(index,1)
+    let playerIndex=players.indexOf(socket.id)
+console.log('llega players arr?',playersArr)
+    //playersArr[playerIndex + 2].name = `player${playerIndex + 2}`
+    console.log('wtf bro',playerIndex)
+    console.log('antes del splice',players)
+    connectedSockets.splice(index,1) 
+    players.splice(playerIndex,1)
+    console.log('despues del splice',players)
+    console.log('llega players arr pos splice?',playersArr)
     console.log('user disconnected')
 
     
+
+  
   })
 
   socket.on('chat', function(data){
